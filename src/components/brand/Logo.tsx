@@ -12,8 +12,8 @@ type Props = {
   className?: string;
 };
 
-const wordmarkSize = { sm: "text-[2.5rem]", md: "text-[4rem]", lg: "text-[2.75rem] md:text-[3.25rem]" };
-const markSize = { sm: "size-5", md: "size-7", lg: "size-6" };
+const wordmarkSize = { sm: "text-[3rem]", md: "text-[4.75rem]", lg: "text-[2.75rem] md:text-[3.25rem]" };
+const markSize = { sm: "size-6", md: "size-8", lg: "size-6" };
 
 export function Logo({ tone = "ink", size = "md", showSubline = false, asLink = true, className = "" }: Props) {
   const color = tone === "ink" ? "text-ink" : "text-paper";
