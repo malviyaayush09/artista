@@ -5,6 +5,7 @@ import { longDate } from "@/lib/time";
 import { orderToken } from "@/lib/tokens";
 import type { OrderStatus } from "@/lib/types";
 import { weightLabel } from "@/lib/types";
+import { waTemplates } from "@/lib/whatsapp";
 import type { Message } from "./channels";
 
 const inr = (p: number) => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 2 }).format(p / 100);
@@ -78,5 +79,11 @@ ${o.deliveryFeePaise ? `<tr><td style="padding:4px 0">Delivery</td><td align="ri
 <tr><td style="padding:16px 24px;font-size:12px;border-top:1px solid ${accent}">${esc(brand.tagline)} · Delivering in ${esc(deliveryAreaLabel)}</td></tr>
 </table></td></tr></table></body></html>`;
 
-  return { subject: c.subject(o), html, text };
+  // Template wording lives in WhatsApp Manager (docs/whatsapp-setup.md); these fill its {{1}}, {{2}}… in order.
+  const whatsapp =
+    status === "placed"
+      ? { template: waTemplates.orderReceived, params: [o.orderNumber, `${longDate(o.deliveryDate)}, ${o.slotLabel}`, inr(o.totalPaise), link] }
+      : { template: waTemplates.orderUpdate, params: [o.orderNumber, [c.lead, rider.replaceAll("\n", " · ")].filter(Boolean).join(" "), link] };
+
+  return { subject: c.subject(o), html, text, whatsapp };
 }

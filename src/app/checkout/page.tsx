@@ -4,7 +4,7 @@ import { currentUser } from "@/lib/auth/session";
 import { getSettings } from "@/lib/catalog";
 import { getClosedDates } from "@/lib/closed-dates";
 import { db } from "@/lib/db";
-import { isDbConfigured, isRazorpayConfigured } from "@/lib/env";
+import { isDbConfigured, isRazorpayConfigured, isWhatsAppConfigured } from "@/lib/env";
 import { bookableDates } from "@/lib/slots";
 import { dbSupports } from "@/lib/capabilities";
 import { CheckoutForm, type SavedAddress } from "@/components/checkout/CheckoutForm";
@@ -36,6 +36,7 @@ export default async function CheckoutPage() {
       configured={isDbConfigured()}
       liveCheckout={isRazorpayConfigured()}
       surpriseEnabled={await dbSupports("surprise")}
+      whatsappUpdates={isWhatsAppConfigured()}
       user={user ? { name: user.name ?? "", phone: user.phone ?? "", email: user.email ?? "" } : null}
       addresses={addresses}
     />

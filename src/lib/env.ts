@@ -10,11 +10,14 @@ export const env = {
   razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET ?? "",
   razorpayWebhookSecret: process.env.RAZORPAY_WEBHOOK_SECRET ?? "",
   resendApiKey: process.env.RESEND_API_KEY ?? "",
+  whatsappToken: process.env.WHATSAPP_ACCESS_TOKEN ?? "",
+  whatsappPhoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID ?? "",
   siteUrl: (process.env.SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
   isProd: process.env.NODE_ENV === "production" && process.env.VERCEL_ENV !== "preview",
 };
 
 export const isDbConfigured = () => Boolean(env.supabaseUrl && env.supabaseServiceKey);
+export const isWhatsAppConfigured = () => Boolean(env.whatsappToken && env.whatsappPhoneNumberId);
 export const isRazorpayConfigured = () => Boolean(env.razorpayKeyId && env.razorpayKeySecret && env.razorpayWebhookSecret);
 
 /**

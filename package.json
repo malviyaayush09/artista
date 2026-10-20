@@ -8,7 +8,9 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "db:backup": "node --env-file=.env.local scripts/backup.mjs",
-    "db:descriptions": "node --env-file=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/apply-descriptions.mjs"
+    "db:descriptions": "node --env-file=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/apply-descriptions.mjs",
+    "whatsapp:status": "node scripts/whatsapp-register.mjs",
+    "whatsapp:register": "node scripts/whatsapp-register.mjs register"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

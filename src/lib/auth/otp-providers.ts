@@ -1,14 +1,18 @@
 import { brand } from "@/config/brand";
-import { devToolsEnabled } from "@/lib/env";
+import { devToolsEnabled, isWhatsAppConfigured } from "@/lib/env";
 import { emailChannel } from "@/lib/notify/channels";
+import { ValidationError } from "@/lib/validate";
+import { sendWhatsAppCode } from "@/lib/whatsapp";
 
 /**
- * Swappable OTP delivery. To go live with SMS, implement OtpProvider for a
- * DLT-registered Indian SMS provider (e.g. MSG91) and return it from smsProvider().
+ * Swappable OTP delivery. Phone codes go by WhatsApp once its keys are set.
+ * "sms" is the phone channel name (stored in otp_codes), whatever carries it.
  */
 export interface OtpProvider {
   readonly channel: "sms" | "email";
   readonly isMock: boolean;
+  /** Shown to the customer: where to look for the code. */
+  readonly via?: "WhatsApp";
   send(destination: string, code: string): Promise<void>;
 }
 
@@ -36,7 +40,23 @@ export const emailOtpProvider: OtpProvider = {
   },
 };
 
-/** The active SMS provider. Mock only outside production; null means phone login is unavailable. */
+export const whatsappOtpProvider: OtpProvider = {
+  channel: "sms",
+  isMock: false,
+  via: "WhatsApp",
+  async send(destination, code) {
+    try {
+      await sendWhatsAppCode(destination, code);
+    } catch (e) {
+      // Most often the number isn't on WhatsApp; email still works.
+      console.error("[otp:whatsapp]", destination, e);
+      throw new ValidationError("destination", "We couldn't send a code to this number on WhatsApp. Check the number, or use email instead.");
+    }
+  },
+};
+
+/** The active phone provider: WhatsApp when configured, else the mock outside production; null means phone login is unavailable. */
 export function smsProvider(): OtpProvider | null {
+  if (isWhatsAppConfigured()) return whatsappOtpProvider;
   return devToolsEnabled() ? mockSmsProvider : null;
 }

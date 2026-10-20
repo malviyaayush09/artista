@@ -39,11 +39,11 @@ Until `SUPABASE_*` is set, the storefront renders from the seed data in `src/dat
 
 ## 5. Email
 
-Set `RESEND_API_KEY`. Without it, emails are logged to the console and recorded as `skipped` in `notification_log`. Customers are emailed when an order is placed and on every status change. SMS/WhatsApp can be added as another `NotificationChannel` in `src/lib/notify/channels.ts`.
+Set `RESEND_API_KEY`. Without it, emails are logged to the console and recorded as `skipped` in `notification_log`. Customers are emailed when an order is placed and on every status change. With `WHATSAPP_ACCESS_TOKEN` and `WHATSAPP_PHONE_NUMBER_ID` set, the same updates also go to the checkout mobile number on WhatsApp (approved templates; see [docs/whatsapp-setup.md](docs/whatsapp-setup.md)).
 
 ## 6. Sign-in (OTP)
 
-Phone OTP is the primary method and email OTP the fallback. OTP delivery sits behind the `OtpProvider` interface in `src/lib/auth/otp-providers.ts`. The mock SMS provider is available only outside production. To go live with SMS, implement `OtpProvider` for a DLT-registered Indian provider (e.g. MSG91) and return it from `smsProvider()`. Codes and session tokens are stored only as SHA-256 hashes; sessions use an httpOnly cookie.
+Phone OTP is the primary method and email OTP the fallback. OTP delivery sits behind the `OtpProvider` interface in `src/lib/auth/otp-providers.ts`. When the WhatsApp keys are set, phone codes are sent on WhatsApp (an authentication template with a Copy code button). Otherwise the mock SMS provider is used, outside production only, and production offers email sign-in. Codes and session tokens are stored only as SHA-256 hashes; sessions use an httpOnly cookie.
 
 ## 7. Invoices
 

@@ -7,7 +7,7 @@ import { buttonClasses } from "@/components/ui/Button";
 const input = "block w-full min-h-12 border border-ink/40 bg-paper-soft px-3.5 py-2.5 text-ink focus:border-ink focus:outline-2 focus:outline-accent aria-[invalid=true]:border-danger";
 
 /** Phone OTP first; email as fallback. */
-export function LoginForm({ next, phoneAvailable }: { next: string; phoneAvailable: boolean }) {
+export function LoginForm({ next, phoneAvailable, phoneVia }: { next: string; phoneAvailable: boolean; phoneVia?: string }) {
   const router = useRouter();
   const [channel, setChannel] = useState<"sms" | "email">(phoneAvailable ? "sms" : "email");
   const [destination, setDestination] = useState("");
@@ -50,7 +50,8 @@ export function LoginForm({ next, phoneAvailable }: { next: string; phoneAvailab
     return (
       <form onSubmit={verify} className="space-y-5">
         <p className="text-[0.9375rem] text-ink">
-          Enter the 6-digit code sent to <b className="font-medium">{channel === "sms" ? `+91 ${destination.replace(/\D/g, "").slice(-10)}` : destination}</b>.
+          Enter the 6-digit code sent to <b className="font-medium">{channel === "sms" ? `+91 ${destination.replace(/\D/g, "").slice(-10)}` : destination}</b>
+          {channel === "sms" && phoneVia ? ` on ${phoneVia}` : ""}.
         </p>
         {devCode ? (
           <p className="border border-dashed border-detail px-3 py-2 text-[0.9375rem] text-ink">
@@ -102,6 +103,7 @@ export function LoginForm({ next, phoneAvailable }: { next: string; phoneAvailab
           <label htmlFor="dest" className="block text-[1rem] font-medium text-ink">
             Mobile number
           </label>
+          {phoneVia ? <p className="text-[0.9375rem] text-body">We&apos;ll send the code on {phoneVia}.</p> : null}
           <div className="flex">
             <span className="inline-flex min-h-12 items-center border border-r-0 border-ink/40 bg-paper-deep px-3 text-ink">+91</span>
             <input id="dest" type="tel" inputMode="tel" autoComplete="tel-national" className={input} value={destination} onChange={(e) => setDestination(e.target.value)} aria-invalid={Boolean(error) || undefined} required />

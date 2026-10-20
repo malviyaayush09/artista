@@ -1,12 +1,14 @@
 import { brand } from "@/config/brand";
-import { env } from "@/lib/env";
+import { env, isWhatsAppConfigured } from "@/lib/env";
+import { sendWhatsAppTemplate } from "@/lib/whatsapp";
 
-export type Message = { subject: string; html: string; text: string };
+/** `whatsapp`: the approved template and its body values; without it the WhatsApp channel skips the message. */
+export type Message = { subject: string; html: string; text: string; whatsapp?: { template: string; params: string[] } };
 export type SendResult = { status: "sent" | "skipped" | "failed"; error?: string };
 
 /**
- * A delivery channel. Email is the only one wired at launch; SMS/WhatsApp
- * providers implement this same interface later and are added to `channels`.
+ * A delivery channel. Email always; WhatsApp once its keys are set. An SMS
+ * provider would implement this same interface and be added to `channels`.
  */
 export interface NotificationChannel {
   readonly name: "email" | "sms" | "whatsapp";
@@ -39,5 +41,20 @@ export const emailChannel: NotificationChannel = {
   },
 };
 
-/** Enabled channels. Add SMS / WhatsApp here when a provider is integrated. */
-export const channels: NotificationChannel[] = [emailChannel];
+/** Customer's checkout number, on WhatsApp Cloud API. Off (no recipient) until WHATSAPP_* keys are set. */
+export const whatsappChannel: NotificationChannel = {
+  name: "whatsapp",
+  recipient: (o) => (isWhatsAppConfigured() && o.phone ? o.phone : null),
+  async send(to, msg) {
+    if (!msg.whatsapp) return { status: "skipped", error: "no WhatsApp template for this message" };
+    try {
+      await sendWhatsAppTemplate(to, msg.whatsapp.template, msg.whatsapp.params);
+      return { status: "sent" };
+    } catch (e) {
+      return { status: "failed", error: e instanceof Error ? e.message : String(e) };
+    }
+  },
+};
+
+/** Enabled channels. */
+export const channels: NotificationChannel[] = [emailChannel, whatsappChannel];

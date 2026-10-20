@@ -25,6 +25,8 @@ type Props = {
   liveCheckout: boolean;
   /** "Send as a surprise" (needs migration 0003). */
   surpriseEnabled: boolean;
+  /** Order updates also go to the mobile number on WhatsApp (keys set). */
+  whatsappUpdates: boolean;
   user: { name: string; phone: string; email: string } | null;
   addresses: SavedAddress[];
 };
@@ -252,7 +254,7 @@ export function CheckoutForm(p: Props) {
             <Field id="co-name" label="Full name" error={errors.name}>
               <input id="co-name" className={input} value={f.name} onChange={set("name")} autoComplete="name" aria-invalid={Boolean(errors.name) || undefined} />
             </Field>
-            <Field id="co-phone" label="Mobile number" hint="For delivery updates from the rider." error={errors.phone}>
+            <Field id="co-phone" label="Mobile number" hint={p.whatsappUpdates ? "We'll send order updates to this number on WhatsApp, and the rider may call." : "For delivery updates from the rider."} error={errors.phone}>
               <div className="flex">
                 <span className="inline-flex min-h-12 items-center border border-r-0 border-ink/40 bg-paper-deep px-3 text-ink">+91</span>
                 <input id="co-phone" type="tel" inputMode="tel" autoComplete="tel-national" className={input} value={f.phone} onChange={set("phone")} maxLength={14} aria-invalid={Boolean(errors.phone) || undefined} />
