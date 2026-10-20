@@ -24,7 +24,8 @@ export function Logo({ tone = "ink", size = "md", showSubline = false, asLink = 
     <span className={`inline-flex items-center gap-2 ${color}`}>
       <GinkgoMark className={`${markSize[size]} shrink-0 text-accent`} />
       <span className="flex flex-col leading-none">
-        <span className={`font-script ${wordmarkSize[size]} leading-[1.1]`}>
+        {/* Allura has one weight; a same-colour stroke thickens it cleanly (no faux bold). */}
+        <span className={`font-script ${wordmarkSize[size]} leading-[1.1] [-webkit-text-stroke:0.018em_currentColor]`}>
           {brand.logo.wordmark}
           {!showSubline ? <span className="sr-only"> {brand.logo.subline}</span> : null}
         </span>
