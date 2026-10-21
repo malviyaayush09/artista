@@ -92,8 +92,9 @@ export function Hero() {
                 </div>
 
                 <div
-                  className={`container-x relative -mt-10 pb-24 transition-[transform,opacity] delay-150 duration-700 ease-out sm:-mt-14 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:flex-col lg:justify-center lg:py-24 lg:pr-12 lg:pl-[max(1.75rem,calc((100vw-92rem)/2+1.75rem))] ${
-                    active ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+                  className={`container-x relative -mt-10 pb-24 ease-out sm:-mt-14 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:flex-col lg:justify-center lg:py-24 lg:pr-12 lg:pl-[max(1.75rem,calc((100vw-92rem)/2+1.75rem))] ${
+                    // Outgoing text goes at once (no half-faded text over the cross-fading photos); incoming text eases in.
+                    active ? "translate-y-0 opacity-100 transition-[transform,opacity] delay-100 duration-500" : "translate-y-3 opacity-0"
                   }`}
                 >
                   <p className="eyebrow text-accent">{s.eyebrow}</p>

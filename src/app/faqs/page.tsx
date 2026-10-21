@@ -8,6 +8,7 @@ import { ChevronDownIcon } from "@/components/ui/Icons";
 export const metadata: Metadata = {
   title: "FAQs",
   description: `Answers about ordering, delivery in ${deliveryAreaLabel}, payment and changes at ${brand.name}.`,
+  alternates: { canonical: "/faqs" },
 };
 
 export default function FaqsPage() {

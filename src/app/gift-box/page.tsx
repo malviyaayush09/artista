@@ -12,6 +12,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Gift Box",
   description: `Gift boxes and hampers from ${brand.name}, delivered in ${deliveryAreaLabel}.`,
+  alternates: { canonical: "/gift-box" },
 };
 
 /** Lists products tagged "gift-box" (admin adds them). Until then, points to the gift note on any cake. */

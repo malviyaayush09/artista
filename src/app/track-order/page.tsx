@@ -10,6 +10,7 @@ import { TrackOrderForm } from "@/components/account/TrackOrderForm";
 export const metadata: Metadata = {
   title: "Track Order",
   description: `How ${brand.name} delivers your order in ${deliveryAreaLabel}, and who may contact you about it.`,
+  alternates: { canonical: "/track-order" },
 };
 export const dynamic = "force-dynamic";
 

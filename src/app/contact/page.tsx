@@ -9,6 +9,7 @@ import { Placeholder } from "@/components/ui/Placeholder";
 export const metadata: Metadata = {
   title: "Contact",
   description: `Contact ${brand.name}. Luxury cakes delivered in ${deliveryAreaLabel}.`,
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

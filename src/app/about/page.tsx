@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "About Us",
   description: `The story of ${brand.name}: ${brand.belief} Luxury cakes made to order in ${deliveryAreaLabel}.`,
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

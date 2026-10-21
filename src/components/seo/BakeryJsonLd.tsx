@@ -7,11 +7,13 @@ import { env } from "@/lib/env";
  */
 export function BakeryJsonLd() {
   const { phone, email, address, hours } = brand.contact;
+  const { legalName } = brand.legal;
   const data = {
     "@context": "https://schema.org",
     "@type": "Bakery",
     "@id": `${env.siteUrl}/#bakery`,
     name: brand.name,
+    ...(legalName ? { legalName } : {}),
     slogan: brand.tagline,
     url: env.siteUrl,
     image: `${env.siteUrl}/opengraph-image`,
