@@ -40,7 +40,7 @@ const EyeIcon = () => (
  * ctrl/cmd-click. Add goes straight to the cart for a single size, otherwise
  * opens the Glimpse to pick one.
  */
-export function ProductCard({ product, priority = false, sizes = "(min-width: 1472px) 352px, (min-width: 1024px) 24vw, (min-width: 640px) 32vw, 49vw", messageMax = 30, occasion, pairing }: Props) {
+export function ProductCard({ product, priority = false, sizes = "(min-width: 1920px) 460px, (min-width: 1024px) 24vw, (min-width: 640px) 32vw, 49vw", messageMax = 30, occasion, pairing }: Props) {
   const [open, setOpen] = useState(false);
   const { add } = useAddToCart();
   const href = `/cakes/${product.slug}${occasion ? `?occasion=${occasion}` : ""}`;

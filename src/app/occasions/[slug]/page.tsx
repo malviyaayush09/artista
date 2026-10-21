@@ -92,7 +92,7 @@ export default async function OccasionPage({ params }: { params: Params }) {
         </div>
       </section>
 
-      <section id="cakes" aria-labelledby="occasion-cakes" className="container-x py-14 lg:py-20">
+      <section id="cakes" aria-labelledby="occasion-cakes" className="container-x container-wide py-14 lg:py-20">
         <h2 id="occasion-cakes" className="text-center text-[2.25rem] sm:text-[2.75rem]">
           Choose your cake
         </h2>

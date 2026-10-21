@@ -9,7 +9,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="on-ink bg-ink pb-[max(1.5rem,env(safe-area-inset-bottom))] text-paper">
-      <div className="container-x pt-12 lg:pt-16">
+      <div className="container-x container-wide pt-12 lg:pt-16">
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <Logo tone="paper" size="lg" showSubline />

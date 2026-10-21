@@ -103,22 +103,38 @@
 }
 
 @layer components {
-  /* Narrow side margins so photos get the width (Belagio-like). */
+  /*
+   * Narrow side margins so photos get the width (Belagio-like). Text
+   * sections stop at 92rem; photo-led parts add .container-wide (120rem,
+   * 1920px) so full-HD monitors at 100% scaling are filled too. --gutter is
+   * shared with the hero so its text lines up with the page.
+   */
+  :root {
+    --gutter: max(0.75rem, env(safe-area-inset-left));
+  }
+  @media (min-width: 48rem) {
+    :root {
+      --gutter: 1.25rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    :root {
+      --gutter: 1.75rem;
+    }
+  }
+  @media (min-width: 96rem) {
+    :root {
+      --gutter: 2.5rem;
+    }
+  }
   .container-x {
     width: 100%;
     max-width: 92rem;
     margin-inline: auto;
-    padding-inline: max(0.75rem, env(safe-area-inset-left));
+    padding-inline: var(--gutter);
   }
-  @media (min-width: 48rem) {
-    .container-x {
-      padding-inline: 1.25rem;
-    }
-  }
-  @media (min-width: 64rem) {
-    .container-x {
-      padding-inline: 1.75rem;
-    }
+  .container-wide {
+    max-width: 120rem;
   }
 
   /* Small letter-spaced label. 13px floor for legibility. */

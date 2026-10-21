@@ -55,7 +55,7 @@ export default async function CollectionsPage({ searchParams }: { searchParams: 
     <>
       <PageHeader crumb="Collections" title={active.tag ? `${active.label} cakes` : "Collections"} intro={`${all.length} cakes · each made in 500 g and 1 kg`} />
 
-      <div className="container-x py-8 lg:py-12">
+      <div className="container-x container-wide py-8 lg:py-12">
         {/* Filters: centred pills (scrolling row on phones). Plain links: work without JS. */}
         <nav aria-label="Filter cakes">
           <ul className="scroll-row -mx-3 gap-2.5 px-3 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0">

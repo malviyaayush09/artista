@@ -10,7 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 export function Header() {
   return (
     <header className="relative z-40 border-b border-line bg-paper">
-      <div className="container-x grid h-20 grid-cols-[1fr_auto_1fr] items-center lg:h-28">
+      <div className="container-x container-wide grid h-20 grid-cols-[1fr_auto_1fr] items-center lg:h-28">
         <div className="flex items-center">
           <MobileMenu />
         </div>
@@ -36,7 +36,7 @@ export function Header() {
       </div>
 
       <nav aria-label="Primary" className="hidden border-t border-line/70 lg:block">
-        <ul className="container-x flex items-center justify-center gap-10 xl:gap-14">
+        <ul className="container-x container-wide flex items-center justify-center gap-10 xl:gap-14">
           {primaryNav.map((item) => (
             <li key={item.href}>
               <Link

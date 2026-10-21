@@ -23,7 +23,7 @@ export default async function GiftBoxPage() {
   return (
     <>
       <PageHeader crumb="Gift Box" title="The Gift Box" intro="What was made with intention is meant to be shared." />
-      <div className="container-x py-8 lg:py-12">
+      <div className="container-x container-wide py-8 lg:py-12">
         {gifts.length ? (
           <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
             {gifts.map((p) => (

@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: { params: Params }) {
   };
 
   return (
-    <div className="container-x pt-4 pb-32 md:pb-16 lg:pt-6">
+    <div className="container-x container-wide pt-4 pb-32 md:pb-16 lg:pt-6">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <nav aria-label="Breadcrumb">
         <ol className="flex flex-wrap gap-1.5 text-[0.9375rem] text-body">
@@ -81,7 +81,7 @@ export default async function ProductPage({ params }: { params: Params }) {
         <div>
           <div className="relative -mx-3 aspect-[4/5] overflow-hidden bg-paper-soft sm:mx-0">
             {main ? (
-              <Image src={main.src} alt={main.alt || product.name} fill preload fetchPriority="high" sizes="(min-width: 1312px) 640px, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+              <Image src={main.src} alt={main.alt || product.name} fill preload fetchPriority="high" sizes="(min-width: 1920px) 940px, (min-width: 768px) 50vw, 100vw" className="object-cover" />
             ) : (
               <PhotoPending slug={product.slug} className="absolute inset-0" />
             )}

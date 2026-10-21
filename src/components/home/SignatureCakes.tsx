@@ -13,7 +13,7 @@ export async function SignatureCakes() {
 
   return (
     <section aria-labelledby="cakes-title" className="py-14 lg:py-24">
-      <div className="container-x">
+      <div className="container-x container-wide">
         <header className="mx-auto max-w-2xl text-center">
           <GinkgoMark className="mx-auto size-5 text-accent" />
           <h2 id="cakes-title" className="mt-3 text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem]">

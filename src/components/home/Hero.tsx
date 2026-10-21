@@ -92,7 +92,7 @@ export function Hero() {
                 </div>
 
                 <div
-                  className={`container-x relative -mt-10 pb-24 ease-out sm:-mt-14 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:flex-col lg:justify-center lg:py-24 lg:pr-12 lg:pl-[max(1.75rem,calc((100vw-92rem)/2+1.75rem))] ${
+                  className={`container-x relative -mt-10 pb-24 ease-out sm:-mt-14 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:flex-col lg:justify-center lg:py-24 lg:pr-12 lg:pl-[max(var(--gutter),calc((100vw-120rem)/2+var(--gutter)))] ${
                     // Outgoing text goes at once (no half-faded text over the cross-fading photos); incoming text eases in.
                     active ? "translate-y-0 opacity-100 transition-[transform,opacity] delay-100 duration-500" : "translate-y-3 opacity-0"
                   }`}
@@ -127,7 +127,7 @@ export function Hero() {
 
       {/* controls */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0">
-        <div className="flex items-center gap-1 px-3 pb-5 sm:px-5 lg:pr-6 lg:pb-8 lg:pl-[max(1.75rem,calc((100vw-92rem)/2+1.75rem))]">
+        <div className="flex items-center gap-1 px-3 pb-5 sm:px-5 lg:pr-6 lg:pb-8 lg:pl-[max(var(--gutter),calc((100vw-120rem)/2+var(--gutter)))]">
           <div className="pointer-events-auto flex items-center">
             {heroSlides.map((s, i) => (
               <button
