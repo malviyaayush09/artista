@@ -21,7 +21,7 @@ export async function SignatureCakes() {
           </h2>
           <p className="mt-2 text-[1.0625rem] text-body sm:text-[1.125rem]">Made to order, in 500 g and 1 kg.</p>
         </header>
-        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 sm:gap-x-4 lg:mt-14 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-14">
+        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 sm:gap-x-4 lg:mt-14 lg:grid-cols-4 lg:gap-x-7.5 lg:gap-y-14">
           {shown.map((p) => (
             <li key={p.slug} className="flex">
               <ProductCard product={p} messageMax={settings.cakeMessageMaxChars} pairing={pairingFor(p, products)} />

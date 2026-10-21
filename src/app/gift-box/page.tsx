@@ -25,7 +25,7 @@ export default async function GiftBoxPage() {
       <PageHeader crumb="Gift Box" title="The Gift Box" intro="What was made with intention is meant to be shared." />
       <div className="container-x container-wide py-8 lg:py-12">
         {gifts.length ? (
-          <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-4 md:grid-cols-3 lg:gap-x-7.5 lg:gap-y-14 xl:grid-cols-4">
             {gifts.map((p) => (
               <li key={p.id} className="flex">
                 <ProductCard product={p} messageMax={cakeMessageMaxChars} />

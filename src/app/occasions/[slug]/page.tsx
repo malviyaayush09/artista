@@ -97,7 +97,7 @@ export default async function OccasionPage({ params }: { params: Params }) {
           Choose your cake
         </h2>
         <p className="mt-2 text-center text-[1.0625rem] text-body">Tap a cake for a quick look, and try your message on it.</p>
-        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-14">
+        <ul className="mt-10 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 lg:gap-x-7.5 lg:gap-y-14">
           {cakes.map((p) => (
             <li key={p.id} className="flex">
               <ProductCard product={p} messageMax={settings.cakeMessageMaxChars} occasion={o.slug} pairing={pairingFor(p, all)} />
