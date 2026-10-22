@@ -53,12 +53,13 @@ export default async function CollectionsPage({ searchParams }: { searchParams: 
 
   return (
     <>
-      <PageHeader crumb="Collections" title={active.tag ? `${active.label} cakes` : "Collections"} intro={`${all.length} cakes · each made in 500 g and 1 kg`} />
+      <PageHeader crumb="Collections" title={active.tag ? `${active.label} cakes` : "Collections"} intro="Each cake made to order, in 500 g and 1 kg." />
 
-      <div className="container-x container-wide py-8 lg:py-12">
-        {/* Filters: centred pills (scrolling row on phones). Plain links: work without JS. */}
+      <div className="container-x container-wide py-5 lg:py-7">
+        {/* Filters, count and sort share one row on desktop so the cakes start on the first screen. Plain links: work without JS. */}
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
         <nav aria-label="Filter cakes">
-          <ul className="scroll-row -mx-3 gap-2.5 px-3 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0">
+          <ul className="scroll-row -mx-3 gap-2.5 px-3 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0 lg:justify-start">
             {collectionFilters.map((f) => {
               const on = f.tag === active.tag;
               return (
@@ -79,15 +80,16 @@ export default async function CollectionsPage({ searchParams }: { searchParams: 
           </ul>
         </nav>
 
-        <div className="mt-8 flex items-center justify-between gap-3 border-t border-line pt-5">
+        <div className="flex shrink-0 items-center justify-between gap-5 border-t border-line pt-4 lg:border-0 lg:pt-0">
           <p className="text-[1rem] text-body" role="status">
             {list.length} {list.length === 1 ? "cake" : "cakes"}
           </p>
           <SortSelect value={sort} tag={active.tag} />
         </div>
+        </div>
         <h2 className="sr-only">{active.tag ? `${active.label} cakes` : "All cakes"}</h2>
         {list.length ? (
-          <ul className="mt-8 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 lg:gap-x-7.5 lg:gap-y-14">
+          <ul className="mt-6 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 lg:gap-x-7.5 lg:gap-y-14">
             {list.map((p, i) => (
               <li key={p.id} className="flex">
                 <ProductCard product={p} priority={i < 2} messageMax={cakeMessageMaxChars} pairing={pairingFor(p, all)} />
