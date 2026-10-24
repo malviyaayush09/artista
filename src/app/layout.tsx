@@ -23,6 +23,8 @@ export const metadata: Metadata = {
     template: `%s · ${brand.name}`,
   },
   description: `${brand.tagline} Made-to-order luxury cakes, delivered in ${deliveryAreaLabel}.`,
+  // Meta Business domain verification for artistacakes.in (public by design).
+  verification: { other: { "facebook-domain-verification": "ltowbgy2ztai20zr0n9i9ha9t75ua8" } },
 };
 
 export const viewport: Viewport = {
