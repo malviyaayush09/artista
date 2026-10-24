@@ -10,6 +10,8 @@ export const env = {
   razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET ?? "",
   razorpayWebhookSecret: process.env.RAZORPAY_WEBHOOK_SECRET ?? "",
   resendApiKey: process.env.RESEND_API_KEY ?? "",
+  /** Sender address on a domain verified in Resend (e.g. orders@artistacakes.in). Empty uses Resend's test sender. */
+  emailFrom: process.env.EMAIL_FROM ?? "",
   whatsappToken: process.env.WHATSAPP_ACCESS_TOKEN ?? "",
   whatsappPhoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID ?? "",
   siteUrl: (process.env.SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),

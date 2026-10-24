@@ -21,7 +21,7 @@ export type BrandColors = {
 };
 
 type Contact = { whatsapp: string; phone: string; email: string; address: string; hours: string };
-type Legal = { legalName: string; gstin: string; fssaiLicence: string };
+type Legal = { legalName: string; registeredOffice: string; gstin: string; fssaiLicence: string };
 
 export const brand = {
   name: "Artista Cakes",
@@ -65,16 +65,20 @@ export const brand = {
     /** E.164 without "+", e.g. "9198xxxxxxxx". Empty hides the WhatsApp button. */
     whatsapp: "",
     phone: "",
-    email: "",
-    address: "",
+    email: "artistacakes.official@gmail.com",
+    /** The FSSAI-licensed premises where the cakes are made (GST additional place of business). */
+    address: "No. 1020, 24th Main Road, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102",
     hours: "",
   } as Contact,
 
+  /** From the GST registration certificate (REG-06) and FSSAI licence. Artista Cakes is a brand of this LLP. */
   legal: {
-    legalName: "",
-    /** Empty hides GST invoices everywhere. */
-    gstin: "",
-    fssaiLicence: "",
+    legalName: "Bread and Bean Studio LLP",
+    /** GST principal place of business. */
+    registeredOffice: "295, 7th Main, 15th Cross, 6th Sector, HSR Layout, Bengaluru, Karnataka 560102",
+    /** Invoices still need a GST rate above 0 in Admin → Settings. */
+    gstin: "29ABEFB5803H1ZI",
+    fssaiLicence: "11225334000784",
   } as Legal,
 
   /** Prefix for human-readable order numbers, e.g. ART-001234. Orders placed before the rename keep ALC-. */

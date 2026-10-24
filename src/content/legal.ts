@@ -7,7 +7,7 @@ import { brand, deliveryAreaLabel } from "@/config/brand";
  */
 export type LegalDoc = { slug: string; title: string; summary: string; sections: { heading: string; body: string[] }[] };
 
-const who = brand.legal.legalName || brand.name;
+const who = brand.legal.legalName ? `${brand.name} (${brand.legal.legalName})` : brand.name;
 
 export const legalDocs: Record<string, LegalDoc> = {
   "privacy-policy": {

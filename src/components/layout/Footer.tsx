@@ -50,6 +50,12 @@ export function Footer() {
               © {year} {brand.legal.legalName || brand.name}
             </p>
           </div>
+          {brand.legal.legalName ? (
+            <p className="mt-3 max-w-4xl text-[0.9375rem] leading-relaxed text-paper/75">
+              {brand.name} is a brand of {brand.legal.legalName}.{brand.legal.registeredOffice ? ` Registered office: ${brand.legal.registeredOffice}.` : ""}
+              {brand.legal.gstin ? ` GSTIN ${brand.legal.gstin}.` : ""}
+            </p>
+          ) : null}
         </div>
       </div>
     </footer>

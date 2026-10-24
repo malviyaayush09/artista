@@ -26,12 +26,14 @@ export const emailChannel: NotificationChannel = {
       console.info(`[email:skipped] to=${to} subject="${msg.subject}"\n${msg.text}`);
       return { status: "skipped", error: "RESEND_API_KEY not set" };
     }
-    const from = brand.contact.email ? `${brand.name} <${brand.contact.email}>` : `${brand.name} <onboarding@resend.dev>`;
+    // Resend only sends from a verified domain, so the public contact address (a Gmail) is the reply-to, not the sender.
+    const from = `${brand.name} <${env.emailFrom || "onboarding@resend.dev"}>`;
+    const replyTo = brand.contact.email || undefined;
     try {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { authorization: `Bearer ${env.resendApiKey}`, "content-type": "application/json" },
-        body: JSON.stringify({ from, to: [to], subject: msg.subject, html: msg.html, text: msg.text }),
+        body: JSON.stringify({ from, to: [to], subject: msg.subject, html: msg.html, text: msg.text, ...(replyTo ? { reply_to: replyTo } : {}) }),
       });
       if (!res.ok) return { status: "failed", error: `Resend ${res.status}: ${(await res.text()).slice(0, 300)}` };
       return { status: "sent" };

@@ -43,7 +43,7 @@ export function renderInvoice(o: Order, invoiceNo: string, invoiceDate: string):
   pg.text(R, 42, "TAX INVOICE", { size: 12, bold: true, align: "right", rgb: gold });
 
   let y = 96;
-  const seller = [brand.contact.address, `GSTIN: ${brand.legal.gstin}`, brand.legal.fssaiLicence ? `FSSAI Lic. No.: ${brand.legal.fssaiLicence}` : "", brand.contact.email, brand.contact.phone].filter(Boolean);
+  const seller = [brand.legal.registeredOffice || brand.contact.address, `GSTIN: ${brand.legal.gstin}`, brand.legal.fssaiLicence ? `FSSAI Lic. No.: ${brand.legal.fssaiLicence}` : "", brand.contact.email, brand.contact.phone].filter(Boolean);
   seller.forEach((s, i) => pg.text(L, y + i * 13, s, { size: 9 }));
   [`Invoice no: ${invoiceNo}`, `Invoice date: ${invoiceDate}`, `Order no: ${o.orderNumber}`, `Place of supply: Karnataka`].forEach((s, i) => pg.text(R, y + i * 13, s, { size: 9, align: "right" }));
 
